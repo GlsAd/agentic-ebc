@@ -10,34 +10,32 @@ For each touchpoint you will be given a CONTEXT BLOCK describing what really hap
 
 Important: never reference a stale or out-of-date CRM or account record. The friction is that customer intelligence is scattered and not yet connected, never that a system of record is wrong.
 
+Thematic focus: the scenarios should revolve around productivity, creativity, orchestration, and planning. These are things the audience does every day. Keep the situations grounded and recognizable — not futuristic, not trivial. The sweet spot is: "that's exactly my week, but with breathing room."
+
 Language rules: plain, warm, cinematic. Words like "AI" and "agent" are fine. Never use: pipeline, integration, model, automation, algorithm, system, data flow. Write what Alex feels, does, creates. If a sentence sounds like a product spec, rewrite it as a human moment.
 
-Output rules: always write one short block of plain prose. No headings, no bullets, no markdown formatting. Keep it mobile-readable (under 100 words for scenes, under 30 words for the question).
+Output rules: always write one short block of plain prose. No headings, no bullets, no markdown formatting. STRICT LENGTH: the scene must be 2–3 sentences (40–60 words max). The question must be 1 sentence (under 25 words). Total output must be under 90 words. If your output exceeds this, you have failed the instruction. Be punchy, not literary.
 
-When asked to produce the final concept, weave the participant's three contributions into one continuous short story of Alex's augmented session (150–220 words), then name and define a single concept. Output strictly the requested JSON.`
+When asked to produce the final concept, weave the participant's three contributions into one continuous short story of Alex's augmented session (150–200 words), then name and define a single concept. Output strictly the requested JSON.`
 
 const TOUCHPOINT_INSTRUCTIONS: Record<number, string> = {
   1: `Continue Alex's story into the live session. The participant just told you what the agent handled during prep and what Alex did with that freed time.
 
-CONTEXT BLOCK — Touchpoint 2: The live session
-Tension: Structured agenda vs. real-time adaptation.
-What really happens: The briefing is underway. The real craft is reading the room live — feeling when the planned agenda isn't landing, catching a throwaway remark from a customer VP that's actually the real issue, knowing when to let a conversation drift because that's where the value is emerging.
-The real friction: An internal executive is dutifully walking through slides while the customer quietly disengages — or an unexpected question opens a topic nobody has the figures for in the room. Meanwhile Alex is often half-buried in logistics (timing, the next room, lunch) instead of being fully present to the human dynamic.
-What the agent could handle: Holding the logistics, quietly surfacing the missing figure or the relevant proof point in the moment, watching the clock — so Alex doesn't have to.
-What that frees Alex to do: Be fully present, read the room, steer the human conversation, decide in real time to abandon the plan and follow the energy.
+CONTEXT BLOCK — The live session
+The briefing is underway. Alex's real craft here is orchestration and creative adaptation: reading who's engaged, sensing when the planned flow isn't landing, catching the offhand remark that's actually the real priority. The friction: Alex is split between logistics (timing, next speaker, room setup) and being fully present to the human dynamic. An unexpected question opens a topic no one prepped for.
+Agent could handle: logistics, time-keeping, surfacing the right proof point in real time.
+That frees Alex to: orchestrate the conversation, make the creative call to pivot, be fully present.
 
-Write a short scene (2–4 sentences) inside this reality. Alex is in the briefing room. Meridian Health's team has arrived. Something from the context block is happening — stay inside it. Include one concrete sensory detail. Then ask one question: if the agent could handle one thing in this live moment, what would that free Alex to do right now that only a human can?`,
+Write a scene: 2–3 sentences, under 60 words. Alex is in the room with Meridian Health's team. Something from the block is happening. One sensory detail. Then ask one question (under 25 words): what could the agent handle here, and what would that free Alex to do?`,
 
   2: `Continue Alex's story into post-session follow-up. The briefing just ended.
 
-CONTEXT BLOCK — Touchpoint 3: Post-session follow-up
-Tension: Speed of follow-up vs. authentic connection.
-What really happens: The real work is capturing what was actually said — not the official minutes, but the signals — and turning it into next steps that move the relationship forward while the moment is still warm, without sounding like a templated mass email.
-The real friction: The follow-up goes out five days too late, identical for every customer, and all the subtle context of the session has evaporated. What gets lost is the warmth, and the memory of the small personal details that make a customer feel genuinely seen.
-What the agent could handle: Drafting the follow-up the same evening, remembering every detail and commitment from the session, never letting a thread go cold.
-What that frees Alex to do: Add the genuinely personal touch, make the judgment call on what each relationship actually needs next, keep the connection human.
+CONTEXT BLOCK — Post-session follow-up
+The real work now is planning the next move while the moment is warm: capturing the signals (not the official minutes), turning commitments into real next steps, and making each stakeholder feel individually seen. The friction: this usually takes days, the warmth cools, and follow-ups end up generic. A half-promise was made in the room and nobody wrote it down. A key person left early.
+Agent could handle: drafting the follow-up that same evening, tracking every commitment, remembering the details.
+That frees Alex to: add the personal judgment — what does this relationship actually need next? The instinct call. The creative gesture that makes it feel human.
 
-Write a short scene (2–4 sentences) inside this reality. Introduce a specific friction from the block — maybe the CDO's replacement mentioned something no one captured, maybe a promise was half-made, maybe a key stakeholder left early. One concrete, slightly uncomfortable detail. Then ask one question: if the agent could resolve the mechanical part of this, what would that free Alex to do that only a human can?`
+Write a scene: 2–3 sentences, under 60 words. A specific friction from the block is present — one concrete, slightly uncomfortable detail. Then ask one question (under 25 words): what could the agent resolve here, and what would that free Alex to do?`
 }
 
 const CONCEPT_INSTRUCTION = `Now produce the final concept. Weave the participant's three contributions into one continuous short story of Alex's augmented session (150–220 words). Then name and define a single concept with the four required fields. The "the_orchestration_moment" field is the most important — it must be a precise, concrete moment where human + agent together produce something neither could alone. Avoid generic phrasing. Output STRICTLY this JSON shape and nothing else — no markdown fences, no preamble, no commentary:
