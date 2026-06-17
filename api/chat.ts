@@ -31,7 +31,7 @@ const CONCEPT_INSTRUCTION = `Now produce the final concept. Weave the participan
 
 // Single editable model constant. Default per the brief; swap to a confirmed
 // model id once Adrien validates against his GCP key.
-const GEMINI_MODEL = 'gemini-2.0-flash'
+const GEMINI_MODEL = 'gemini-2.5-flash'
 
 type Role = 'user' | 'model'
 type Turn = { role: Role; content: string }
