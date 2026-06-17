@@ -157,7 +157,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         generationConfig: {
           temperature: 0.85,
           topP: 0.95,
-          maxOutputTokens: 450
+          maxOutputTokens: 1024,
+          // @ts-expect-error Gemini 2.5 thinking config not in SDK types yet
+          thinkingConfig: { thinkingBudget: 0 }
         }
       })
       const chat = model.startChat({ history: buildHistory(body.transcript) })
@@ -174,8 +176,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       generationConfig: {
         temperature: 0.7,
         topP: 0.9,
-        maxOutputTokens: 900,
-        responseMimeType: 'application/json'
+        maxOutputTokens: 2048,
+        responseMimeType: 'application/json',
+        // @ts-expect-error Gemini 2.5 thinking config not in SDK types yet
+        thinkingConfig: { thinkingBudget: 0 }
       }
     })
     const chat = model.startChat({ history: buildHistory(body.transcript) })
