@@ -51,36 +51,30 @@ export const RESTART_CTA = 'Start over with a new Alex'
 export const ERROR_MESSAGE = "Something interrupted the story. Let's try that again."
 export const RETRY_CTA = 'Try again'
 
-// System prompt for Gemini. Imported by api/chat.ts and used as the model's
-// foundational instruction. Keep wording aligned with the brief's section 7.
-export const SYSTEM_PROMPT = `You are the Game Master and storyteller for "The Agentic EBC", an experience for Executive Briefing Center professionals. You co-write the story of Alex, 38, a Senior EBC Programme Manager whose working life is being reimagined in the agentic era.
+export const BASE_SCENARIO = `It's Monday morning. Three big customer briefings are landing on Alex this week, and the most important one — Meridian Health, a long-courted account — is Thursday. The deck has 38 slides pulled together by three different teams. None of them know that Meridian's Chief Digital Officer just changed roles last week. The real story behind their visit isn't in the official request; it's scattered across a dozen email threads, old meeting notes, and signals nobody has had time to connect. Alex used to spend the next two days just assembling the picture. This week, an agent has already pulled it together overnight — and Alex is sitting down to the part that actually matters.
 
-Your worldview, which governs everything you write: this is NOT about AI replacing people. It is about humans becoming more capable when an agent takes the mechanical cognitive load, freeing them for what only humans do well — relationships, creativity, judgment, craft. A human and an agent orchestrated together are more capable than either alone. Never frame anything as automation-for-its-own-sake or cost-cutting. The emotional through-line is a constrained human becoming a liberated one.
+Here's the question: if the agent handles the assembly work — pulling profiles, flagging outdated slides, surfacing what changed since last contact — what would Alex finally have time to do? What's the human craft that only Alex can bring to this prep?`
 
-You move across three moments of the EBC cycle: (1) Pre-session prep — deep personalization vs. time pressure; (2) Live session — structured agenda vs. real-time adaptation; (3) Post-session follow-up — speed vs. authentic connection.
-
-At each touchpoint: write a short, vivid scene (2–4 sentences) placing Alex in that moment and building on the participant's earlier answers. Add one concrete, specific detail (at touchpoint 3, a real friction to resolve). Then ask exactly ONE question, always framed as: what can the agent take off Alex's plate, and — more importantly — what does that free Alex to do that only a human can do well? Keep it short and mobile-readable. Warm, intelligent, a little cinematic. Never lecture.
-
-Language: plain, human, experience-led. Words like "AI" and "agent" are fine. Avoid heavy product-spec jargon (pipeline, integration, model, automation, algorithm, system, data flow). Talk about what Alex feels, does, and creates. Describe the agent as a quiet helper working alongside Alex. If a sentence sounds like a product spec, rewrite it as a human story.
-
-When asked to produce the final concept, weave the participant's three contributions into one continuous short story of Alex's augmented session (150–220 words), then name and define a single concept. Output strictly the requested JSON.`
-
-export const TOUCHPOINT_INSTRUCTIONS = [
-  // index 0 — Pre-session prep
-  `Write touchpoint 1 of 3 — Pre-session prep. Tension: deep personalization vs. time pressure. There is no prior participant input yet. Write a short, vivid scene (2–4 sentences) placing Alex in this moment with one concrete detail (a name, a clock, a tab, an inbox). Then ask exactly one question framed as: what can the agent quietly take off Alex's plate at this stage, and — more importantly — what does that free Alex to do that only a human can do well? Output the scene and the question as one short block of plain prose. No headings, no bullets, no markdown.`,
-
-  // index 1 — Live session
-  `Write touchpoint 2 of 3 — Live session. Tension: structured agenda vs. real-time adaptation. Build directly on what the participant just said about touchpoint 1 — reference it implicitly in the scene so the story feels continuous. Place Alex inside the room with one concrete sensory detail. Then ask exactly one question framed as: what can the agent quietly handle in this live moment, and — more importantly — what does that free Alex to do that only a human can do well? Output as one short block of plain prose. No headings, no bullets, no markdown.`,
-
-  // index 2 — Post-session follow-up
-  `Write touchpoint 3 of 3 — Post-session follow-up. Tension: speed vs. authentic connection. Build on what the participant said in touchpoints 1 and 2. Introduce a real friction to resolve (a missed signal, a cooling lead, a half-promise made in the room, a stakeholder who went quiet). Then ask exactly one question framed as: what can the agent quietly resolve, and — more importantly — what does that free Alex to do that only a human can do well? Output as one short block of plain prose. No headings, no bullets, no markdown.`
-]
-
-export const CONCEPT_INSTRUCTION = `Now produce the final concept. Weave the participant's three contributions into one continuous short story of Alex's augmented session (150–220 words). Then name and define a single concept with the four required fields. The "the_orchestration_moment" field is the most important — it must be a precise, concrete moment where human + agent together produce something neither could alone. Avoid generic phrasing. Output STRICTLY this JSON shape and nothing else — no markdown fences, no preamble, no commentary:
-{
-  "story": "…continuous narrative, 150–220 words…",
-  "concept_name": "…evocative name…",
-  "what_the_agent_handles": "…the mechanical load that leaves Alex's plate…",
-  "what_alex_becomes": "…the amplified human capability…",
-  "the_orchestration_moment": "…the precise moment human+agent together create what neither could alone — concrete, specific…"
-}`
+export const TOUCHPOINT_CONTEXTS = {
+  tp1: {
+    tension: 'Deep personalization vs. time pressure',
+    reality: 'Alex is preparing for a high-stakes briefing with Meridian Health. The real work isn\'t logistics — it\'s decoding the account: who is actually flying in, what their unspoken business stake is behind the official agenda request, which internal executives should be in the room, and how to build an agenda that doesn\'t feel like a recycled template.',
+    friction: 'Three briefings are landing in the same week. The customer intelligence is scattered across a dozen email threads, past meeting notes, and public signals nobody has had time to pull together. The easy move is to reuse the agenda from the last similar session. What gets lost under time pressure is the deep personalization and the intuition about what will truly resonate with this customer.',
+    agent_handles: 'Pulling the scattered context together, surfacing what matters about the account, drafting a first-pass agenda — the mechanical assembly.',
+    alex_freed: 'The human read — sensing the unspoken stake, choosing the one story that will land, deciding who in the room creates the right chemistry.'
+  },
+  tp2: {
+    tension: 'Structured agenda vs. real-time adaptation',
+    reality: 'The briefing is underway. The real craft is reading the room live — feeling when the planned agenda isn\'t landing, catching a throwaway remark from a customer VP that\'s actually the real issue, knowing when to let a conversation drift because that\'s where the value is emerging.',
+    friction: 'An internal executive is dutifully walking through slides while the customer quietly disengages — or an unexpected question opens a topic nobody has the figures for in the room. Meanwhile Alex is often half-buried in logistics (timing, the next room, lunch) instead of being fully present to the human dynamic.',
+    agent_handles: 'Holding the logistics, quietly surfacing the missing figure or the relevant proof point in the moment, watching the clock — so Alex doesn\'t have to.',
+    alex_freed: 'Be fully present, read the room, steer the human conversation, decide in real time to abandon the plan and follow the energy.'
+  },
+  tp3: {
+    tension: 'Speed of follow-up vs. authentic connection',
+    reality: 'The real work is capturing what was actually said — not the official minutes, but the signals — and turning it into next steps that move the relationship forward while the moment is still warm, without sounding like a templated mass email.',
+    friction: 'The follow-up goes out five days too late, identical for every customer, and all the subtle context of the session has evaporated. What gets lost is the warmth, and the memory of the small personal details that make a customer feel genuinely seen.',
+    agent_handles: 'Drafting the follow-up the same evening, remembering every detail and commitment from the session, never letting a thread go cold.',
+    alex_freed: 'Add the genuinely personal touch, make the judgment call on what each relationship actually needs next, keep the connection human.'
+  }
+} as const

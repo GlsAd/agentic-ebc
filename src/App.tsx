@@ -7,7 +7,7 @@ import { TouchpointScreen } from './components/TouchpointScreen'
 import { ConceptCard } from './components/ConceptCard'
 import { LoadingScene } from './components/ui/LoadingScene'
 import { BrandFrame } from './components/ui/BrandFrame'
-import { CONCEPT_LOADING, ERROR_MESSAGE, RETRY_CTA } from './content'
+import { BASE_SCENARIO, CONCEPT_LOADING, ERROR_MESSAGE, RETRY_CTA } from './content'
 
 const TP_INDEX: Record<'tp1' | 'tp2' | 'tp3', 0 | 1 | 2> = { tp1: 0, tp2: 1, tp3: 2 }
 
@@ -60,7 +60,10 @@ export default function App() {
   }
 
   function handleBegin() {
-    void loadTouchpoint(0, [])
+    const initial: Turn[] = [{ role: 'model', content: BASE_SCENARIO }]
+    setTranscript(initial)
+    setCurrentScene(BASE_SCENARIO)
+    setStage('tp1')
   }
 
   function handleAnswer(answer: string) {
