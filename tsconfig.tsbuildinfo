@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/content.ts","./src/main.tsx","./src/types.ts","./src/components/conceptcard.tsx","./src/components/touchpointscreen.tsx","./src/components/welcomescreen.tsx","./src/components/ui/brandframe.tsx","./src/components/ui/loadingscene.tsx","./src/components/ui/progressdots.tsx","./src/lib/api.ts","./api/chat.ts"],"version":"5.9.3"}

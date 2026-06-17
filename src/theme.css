@@ -1,0 +1,357 @@
+:root {
+  /* Salesforce 2026 brand palette — selected tokens */
+  --sf-cloud-blue:        #00B3FF;
+  --sf-cloud-blue-95:     #EAF5FE;
+  --sf-electric-blue:     #066AFE;
+  --sf-electric-blue-15:  #001E5B;
+  --sf-electric-blue-95:  #EDF4FF;
+  --sf-indigo-30:         #2F2CB7;
+  --sf-violet-65:         #D17DFE;
+  --sf-yellow-80:         #FCC003;
+  --sf-pink-60:           #FF538A;
+  --sf-teal-60:           #06A59A;
+
+  --bg-base:              var(--sf-electric-blue-15);
+  --bg-mid:               var(--sf-indigo-30);
+  --accent:               var(--sf-cloud-blue);
+  --spark:                var(--sf-violet-65);
+  --highlight:            var(--sf-yellow-80);
+
+  --surface:              rgba(255, 255, 255, 0.07);
+  --surface-strong:       rgba(255, 255, 255, 0.10);
+  --border:               rgba(255, 255, 255, 0.14);
+
+  --text:                 #FFFFFF;
+  --text-soft:            rgba(255, 255, 255, 0.78);
+  --text-muted:           rgba(255, 255, 255, 0.55);
+
+  --radius:               18px;
+  --radius-lg:            24px;
+  --shadow-soft:          0 12px 40px rgba(0, 0, 0, 0.35);
+
+  --font:                 "Salesforce Sans", "Arial", "Helvetica Neue", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+html { background: var(--bg-base); }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(120% 70% at 50% 0%, rgba(0, 179, 255, 0.28) 0%, rgba(0, 179, 255, 0) 60%),
+    radial-gradient(80% 50% at 80% 100%, rgba(209, 125, 254, 0.22) 0%, rgba(209, 125, 254, 0) 60%),
+    linear-gradient(180deg, var(--bg-base) 0%, var(--bg-mid) 100%);
+  background-attachment: fixed;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top, 0) 20px env(safe-area-inset-bottom, 0) 20px;
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0 6px;
+}
+
+.app-header img.logo {
+  height: 22px;
+  width: auto;
+  opacity: 0.92;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.app-main {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 0 28px;
+}
+
+h1.title {
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 700;
+  margin: 12px 0 16px;
+  letter-spacing: -0.01em;
+}
+
+p.lead {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-soft);
+  margin: 0 0 8px;
+}
+
+p.body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-soft);
+  margin: 0 0 20px;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 20px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
+}
+
+.card + .card { margin-top: 14px; }
+
+/* Buttons */
+.btn-primary {
+  appearance: none;
+  border: none;
+  background: linear-gradient(180deg, var(--sf-cloud-blue) 0%, var(--sf-electric-blue) 100%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 16px 22px;
+  border-radius: 999px;
+  width: 100%;
+  min-height: 52px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 24px rgba(0, 179, 255, 0.28);
+  transition: transform 120ms ease, box-shadow 200ms ease, opacity 200ms ease;
+}
+
+.btn-primary:active { transform: translateY(1px) scale(0.99); }
+.btn-primary:disabled { opacity: 0.55; cursor: not-allowed; box-shadow: none; }
+
+.btn-ghost {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 18px;
+  border-radius: 999px;
+  min-height: 44px;
+}
+
+.btn-link {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 8px 4px;
+}
+
+/* Progress dots */
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.2);
+  transition: background 220ms ease, width 220ms ease;
+}
+.dot.active { background: var(--accent); width: 22px; border-radius: 4px; }
+.dot.done { background: rgba(255,255,255,0.55); }
+
+/* Touchpoint */
+.tp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.tp-icon {
+  width: 36px; height: 36px; object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.25));
+}
+.tp-label {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.scene {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text);
+  white-space: pre-wrap;
+}
+
+textarea.answer {
+  width: 100%;
+  min-height: 130px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  padding: 14px 16px;
+  font-size: 16px;
+  line-height: 1.45;
+  outline: none;
+  margin: 16px 0 14px;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+textarea.answer:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(0, 179, 255, 0.18);
+}
+textarea.answer::placeholder { color: var(--text-muted); }
+
+/* Welcome — Astro cameo */
+.astro-welcome {
+  position: relative;
+  margin: 16px auto 8px;
+  display: flex;
+  justify-content: center;
+}
+.astro-welcome img {
+  width: min(78%, 280px);
+  height: auto;
+  filter: drop-shadow(0 18px 40px rgba(0, 30, 91, 0.55));
+}
+
+/* Loading */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  padding: 40px 0;
+}
+.loading-icon {
+  width: 56px;
+  height: 56px;
+  animation: pulse 1.6s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.55; transform: scale(0.96); }
+  50%      { opacity: 1;    transform: scale(1.04); }
+}
+.loading-text {
+  font-size: 14px;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+}
+
+/* Concept Card */
+.concept-hero {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.concept-hero img.astro {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4));
+}
+.concept-name {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+.concept-name-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.field-label {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.field-label img {
+  width: 14px; height: 14px;
+}
+.field-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.field-body.story {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.concept-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+/* Error */
+.error-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  text-align: center;
+  padding: 32px 16px;
+}
+
+@media (min-width: 600px) {
+  .app-shell { padding-top: 12px; }
+  h1.title { font-size: 42px; }
+}
